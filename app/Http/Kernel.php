@@ -39,6 +39,13 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            // Tambahkan middleware untuk sesi dan cookie
+            \Illuminate\Session\Middleware\StartSession::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+
+            // Middleware default untuk API
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,

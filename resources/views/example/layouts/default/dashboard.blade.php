@@ -6,11 +6,11 @@
 
       @include('example.layouts.partials.sidebar')
 
-      <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
-        <main>
-          @yield('content')
-        </main>
-            @include('example.layouts.partials.footer-dashboard')
-      </div>
+        <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+          <main>
+            @yield('content')
+          </main>
+              @include('example.layouts.partials.footer-dashboard')
+        </div>
     </div>
 @endsection

@@ -19,11 +19,21 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
+        $authenticated = false;
+
+        // Periksa autentikasi pada setiap guard
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $authenticated = true;
+                break; // Hentikan pengecekan jika sudah ada yang terautentikasi
             }
         }
+
+        // Jika tidak ada guard yang terautentikasi, arahkan ke halaman error
+        if (!$authenticated) {
+            return redirect()->route('pages.500'); // Ganti dengan route yang sesuai
+        }
+
 
         return $next($request);
     }
